@@ -430,3 +430,135 @@ h2 {
   animation: fadeIn 0.3s ease-out;
   margin-top: 15px;
 }
+/* Asegura que las imágenes en general sean responsivas */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Media Query para el contenido principal en pantallas pequeñas */
+@media (max-width: 600px) {
+    .login-container {
+        padding: 30px 20px;
+        margin: 20px auto;
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+
+    .option-btn {
+        padding: 14px 25px;
+        font-size: 1.1em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 12px 15px;
+        font-size: 0.95em;
+        padding-right: 20px;
+    }
+
+    .form-group label.input-label {
+        font-size: 0.9em;
+        padding-left: 5px;
+    }
+
+    /* --- CAMBIOS ESPECÍFICOS PARA LA SECCIÓN DEL MAPA DE DOCENTES --- */
+
+    /* El contenedor del mapa ahora usa flexbox para organizar los avatares */
+    .map-container {
+        position: relative; /* Mantener relative para la imagen de fondo si es necesaria */
+        display: flex; /* Usar flexbox */
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea */
+        justify-content: center; /* Centra los avatares horizontalmente */
+        align-items: flex-start; /* Alinea al inicio verticalmente */
+        margin-top: 20px;
+        margin-bottom: 30px;
+        gap: 15px; /* Espacio entre los avatares */
+        height: auto; /* La altura se ajusta al contenido */
+    }
+
+    /* Eliminar el posicionamiento absoluto para los avatares en móviles */
+    .docente-avatar {
+        position: static !important; /* Anula el absolute para que fluya normalmente */
+        top: auto !important; /* Anula las coordenadas top */
+        left: auto !important; /* Anula las coordenadas left */
+        transform: none !important; /* Anula cualquier transformación de centrado */
+        width: 80px; /* Reduce el tamaño del avatar */
+        height: 80px;
+        border-width: 3px; /* Ajusta el borde */
+        margin: 5px; /* Pequeño margen para separación */
+    }
+    .docente-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Ajustes para la información emergente del docente */
+    .docente-info {
+        position: fixed; /* Mantiene la posición fija para que siempre esté visible en la pantalla */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Centra el modal */
+        width: 90%; /* Ocupa la mayor parte del ancho de la pantalla */
+        max-width: 350px; /* Un máximo para que no sea demasiado grande en tabletas */
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        z-index: 100; /* Asegura que esté por encima de todo */
+        /* Asegurarse que el contenido del modal no se salga */
+        max-height: 90vh; /* Máximo 90% del alto de la ventana */
+        overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+    }
+
+    .docente-info h3 {
+        font-size: 1.5em; /* Reduce el tamaño del título en el modal */
+    }
+
+    .docente-info p {
+        font-size: 0.9em; /* Reduce el tamaño del texto en el modal */
+    }
+
+    /* El botón de volver a la encuesta */
+    .back-link {
+        margin-top: 20px;
+        font-size: 0.9em;
+    }
+}
+
+/* Media Query para pantallas aún más pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    .subtitle {
+        font-size: 0.9em;
+    }
+    .option-btn {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+    .docente-avatar {
+        width: 70px; /* Reduce un poco más el tamaño del avatar */
+        height: 70px;
+    }
+}

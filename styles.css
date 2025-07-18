@@ -497,3 +497,83 @@ input[type="file"]::file-selector-button:hover {
         margin-top: 5px;
     }
 }
+/* Ajustes generales para imágenes en todas las pantallas */
+img {
+    max-width: 100%; /* Asegura que las imágenes no desborden su contenedor */
+    height: auto;    /* Mantiene la proporción de las imágenes */
+    display: block;  /* Evita espacios extra debajo de las imágenes */
+}
+
+/* Media Query para pantallas pequeñas (general) */
+@media (max-width: 600px) {
+    /* Ajustes generales para el contenedor principal de formularios */
+    .login-container {
+        padding: 30px 20px; /* Reduce padding para pantallas más estrechas */
+        margin: 20px auto;  /* Margen vertical para que no pegue a los bordes */
+        min-height: auto;   /* Permite que la altura se ajuste al contenido */
+    }
+
+    /* Títulos y subtítulos más pequeños en móvil */
+    h1 {
+        font-size: 2em; /* Tamaño de fuente adaptable */
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+        margin-bottom: 20px; /* Reduce el margen inferior del subtítulo */
+    }
+
+    /* Botones de opción más grandes y centrados */
+    .option-btn {
+        padding: 14px 25px;
+        font-size: 1.1em;
+        width: 100%; /* Ocupa todo el ancho disponible */
+        box-sizing: border-box; /* Incluye padding en el ancho */
+    }
+
+    /* Entradas de formulario y selects */
+    .form-group input,
+    .form-group select,
+    .form-group textarea { /* También aplica a textareas */
+        padding: 12px 15px;
+        font-size: 0.95em;
+        padding-right: 20px; /* Para mantener espacio para flechas de select */
+    }
+
+    .form-group label.input-label {
+        font-size: 0.9em; 
+        padding-left: 5px; 
+    }
+
+
+    .profesor-card, .alumno-item {
+        flex-direction: column; /* Apila elementos de la tarjeta verticalmente */
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+    }
+    .profesor-card img, .alumno-item img {
+        margin-bottom: 10px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    .subtitle {
+        font-size: 0.9em;
+    }
+    .option-btn {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+}
