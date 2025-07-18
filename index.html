@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeachMeGo – Conectando estudiantes con profesores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-image-container"></div>
+    <main class="login-container">
+        <section id="alumno-section" class="screen">
+            <h2>Bienvenido Alumno</h2>
+            <p class="subtitle">Encuentra el profesor ideal para ti.</p>
+
+            <div class="form-group">
+                <label for="nivel-selector" class="input-label">Selecciona un Nivel:</label>
+                <select id="nivel-selector" required>
+                    <option value="">-- Elige un nivel --</option>
+                    <option value="Primaria">Primaria</option>
+                    <option value="Secundaria">Secundaria</option>
+                    <option value="Universidad">Universidad</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="materia-selector" class="input-label">Selecciona una Materia:</label>
+                <select id="materia-selector" required disabled>
+                    <option value="">-- Elige una materia --</option>
+                </select>
+            </div>
+
+            <button class="option-btn" id="btn-buscar-profesores">Buscar profesores</button>
+
+            <div id="profesores-list-container" style="margin-top: 30px; background-color: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; display: none;">
+                <p>Aquí se mostraría la lista de profesores encontrados. (Simulación)</p>
+                </div>
+
+            <button class="option-btn" id="btn-buscar-mas-profesores" style="margin-top: 20px;">Buscar más profesores</button>
+
+            <div class="back-link">
+                <a href="index (1).html" id="back-to-home-from-alumno">Regresar al inicio</a>
+            </div>
+        </section>
+
+        <section id="profesor-section" class="screen">
+            <h2>Panel del Profesor</h2>
+            <p class="subtitle">Gestiona tu perfil y materiales de clase.</p>
+
+            <div class="panel-section">
+                <h3>Mi Perfil</h3>
+                <p><strong>Nombre:</strong> Prof. Elena Vargas</p>
+                <p><strong>Materias:</strong> Matemáticas, Física</p>
+                <p><strong>Precio/Hora:</strong> S/ 25</p>
+                <p><strong>Modalidad:</strong> Online / Presencial</p>
+            </div>
+
+            <div class="panel-section" style="margin-top: 30px;">
+                <h3>Mis Alumnos</h3>
+                <ul id="alumnos-list" style="list-style: none; padding: 0;">
+                </ul>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <input type="text" id="alumno-input-name" placeholder="Nombre del alumno" class="form-group" style="flex: 1; margin-bottom: 0;">
+                    <button class="option-btn" id="btn-add-alumno" style="width: auto; padding: 10px 15px; font-size: 0.9em;">Agregar</button>
+                </div>
+            </div>
+
+            <div class="panel-section" style="margin-top: 30px;">
+                <h3>Subir Material</h3>
+                <div class="form-group">
+                    <label for="material-file-input" class="input-label">Selecciona un archivo:</label>
+                    <input type="file" id="material-file-input">
+                </div>
+                <button class="option-btn teacher-btn" id="btn-subir-material">Subir Material</button>
+            </div>
+
+            <div id="alumno-details-modal" class="panel-section" style="display: none; margin-top: 30px;">
+                <h3>Detalles de <span id="detail-alumno-name"></span></h3>
+                <div class="form-group">
+                    <label for="detail-horario" class="input-label">Horario:</label>
+                    <input type="text" id="detail-horario" placeholder="Ej: Lunes 10-11 AM">
+                </div>
+                <div class="form-group">
+                    <label for="detail-nota" class="input-label">Nota Final:</label>
+                    <input type="number" id="detail-nota" min="0" max="20" placeholder="0-20">
+                </div>
+                <div class="form-group">
+                    <label for="detail-calificacion" class="input-label">Calificación del Alumno (1-5):</label>
+                    <input type="number" id="detail-calificacion" min="1" max="5" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="detail-observaciones" class="input-label">Observaciones (solo para docentes):</label>
+                    <textarea id="detail-observaciones" placeholder="Comportamiento, progreso..."></textarea>
+                </div>
+                <button class="option-btn" id="btn-save-alumno-details" style="width: 100%; margin-top: 15px;">Guardar Detalles</button>
+                <button class="option-btn teacher-btn" id="btn-close-alumno-details" style="width: 100%; margin-top: 10px; background-color: #dc3545;">Cerrar</button>
+            </div>
+
+            <div class="back-link">
+                <a href="index (1).html" id="back-to-home-from-profesor">Regresar al inicio</a>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="main.js"></script>
+    <script src="alumno.js"></script>
+    <script src="profesor.js"></script>
+    <script>
+        // Este script maneja la visibilidad de las secciones al cargar index.html
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userType = urlParams.get('userType');
+
+            const alumnoSection = document.getElementById('alumno-section');
+            const profesorSection = document.getElementById('profesor-section');
+            const profesoresListContainer = document.getElementById('profesores-list-container');
+
+
+            // Oculta ambas secciones y el contenedor de lista de profesores por defecto
+            if (alumnoSection) {
+                alumnoSection.style.display = 'none';
+                alumnoSection.classList.remove('active');
+            }
+            if (profesorSection) {
+                profesorSection.style.display = 'none';
+                profesorSection.classList.remove('active');
+            }
+            if (profesoresListContainer) {
+                profesoresListContainer.style.display = 'none';
+            }
+
+
+            if (userType === 'alumno') {
+                if (alumnoSection) {
+                    alumnoSection.style.display = 'block'; // Muestra la sección de alumno
+                    alumnoSection.classList.add('active');
+                }
+            } else if (userType === 'profesor') {
+                if (profesorSection) {
+                    profesorSection.style.display = 'block'; // Muestra la sección de profesor
+                    profesorSection.classList.add('active');
+                }
+            } else {
+                // Si no hay userType o es desconocido, redirige a index (1).html
+                window.location.href = 'index (1).html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TeachMeGo - Preferencia Docente</title>
+  <link rel="stylesheet" href="style (2).css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div class="background-image-container"></div>
+
+  <div class="login-container">
+    <div id="welcome-screen" class="screen active">
+      <h1>TeachMeGo</h1>
+      <p class="subtitle">¿Aún no te decides por uno de nuestros profesores?</p>
+      <div class="options-wrapper">
+        <button class="option-btn" id="register-alumno-btn">Comenzar la búsqueda</button>
+      </div>
+    </div>
+
+    <div id="alumno-register-form" class="screen">
+      <h2>Encuesta de Preferencia Docente</h2>
+      <form>
+        <div class="form-group">
+          <input type="text" placeholder="Nombres y Apellidos" required />
+        </div>
+
+        <div class="form-group">
+          <label class="input-label">¿Qué modalidad prefieres?</label>
+          <select required>
+            <option value="">Seleccionar</option>
+            <option>Presencial</option>
+            <option>Virtual</option>
+            <option>Híbrido</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="input-label">¿Qué horarios prefieres?</label>
+          <select required>
+            <option value="">Seleccionar</option>
+            <option>Mañana (8 am - 12 m)</option>
+            <option>Tarde (12 m - 6 pm)</option>
+            <option>Noche (6 pm - 10 pm)</option>
+            <option>Fines de semana</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="input-label">¿Qué materias te interesan?</label>
+          <select required>
+            <option value="">Seleccionar</option>
+            <option>Matemática</option>
+            <option>Química</option>
+            <option>Física</option>
+            <option>Comunicación</option>
+            <option>Inglés</option>
+            <option>Otra</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <input type="email" placeholder="Correo electrónico" required />
+        </div>
+
+        <button type="submit" class="option-btn">Enviar Encuesta</button>
+      </form>
+      <p class="back-link">
+          <a href="index.html" id="back-to-welcome-alumno">← Volver</a>
+      </p>
+    </div>
+
+<div id="docente-map-screen" class="screen login-container">
+  <h2>Selecciona un docente</h2>
+
+  <div class="map-container">
+    <img src="0bc8b0c9-8c9f-4ce4-b515-ee37b68eec98.jpg" alt="Mapa" class="map-image" />
+
+    <div class="docente-avatar" style="top: 28%; left: 35%;" onclick="mostrarInfo('docente1')">
+      <img src="34.jpg" alt="Docente 1" />
+    </div>
+
+    <div class="docente-avatar" style="top: 52%; left: 60%;" onclick="mostrarInfo('docente2')">
+      <img src="ded.png" alt="Docente 2" />
+    </div>
+
+    <div class="docente-avatar" style="top: 40%; left: 80%;" onclick="mostrarInfo('docente3')">
+      <img src="rosa.png" alt="Docente 3" />
+    </div>
+  </div>
+
+  <div id="docente1" class="docente-info">
+    <h3>Prof. XXXXX</h3>
+    <p>Especialidad: Matemática</p>
+    <p>Experiencia: 5 años</p>
+    <button onclick="cerrarInfo()">Cerrar</button>
+  </div>
+
+  <div id="docente2" class="docente-info">
+    <h3>Prof. XXXXX</h3>
+    <p>Especialidad: Química</p>
+    <p>Experiencia: 7 años</p>
+    <button onclick="cerrarInfo()">Cerrar</button>
+  </div>
+
+  <div id="docente3" class="docente-info">
+    <h3>Prof. XXXXXXXXXXXXX</h3>
+    <p>Especialidad: Anatomía</p>
+    <p>Experiencia: 10 años</p>
+    <button onclick="cerrarInfo()">Cerrar</button>
+  </div>
+
+  <p class="back-link">
+      <a href="index.html" onclick="location.href='index.html'; return false;">← Volver a encuesta</a>
+  </p>
+</div>
+
+
+  </div>
+
+
+
+  <script>
+    document.getElementById('register-alumno-btn').onclick = () => {
+      document.getElementById('welcome-screen').classList.remove('active');
+      document.getElementById('alumno-register-form').classList.add('active');
+    };
+
+    // MODIFICACIÓN: El botón "Volver" en el formulario de encuesta redirige a index.html
+    document.getElementById('back-to-welcome-alumno').onclick = () => {
+      window.location.href = 'index.html';
+    };
+
+    function mostrarInfo(id) {
+      document.querySelectorAll('.docente-info').forEach(el => el.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function cerrarInfo() {
+      document.querySelectorAll('.docente-info').forEach(el => el.style.display = 'none');
+    }
+
+    // MODIFICACIÓN: La función volverEncuesta ahora redirige a index.html
+    function volverEncuesta() {
+      window.location.href = 'index.html';
+    }
+
+    document.querySelector("form").onsubmit = function (e) {
+      e.preventDefault();
+      document.getElementById("alumno-register-form").classList.remove("active");
+      document.getElementById("docente-map-screen").classList.add("active");
+    };
+  </script>
+</body>
+</html>
